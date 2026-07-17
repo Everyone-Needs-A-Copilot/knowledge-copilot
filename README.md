@@ -18,12 +18,20 @@ and work.
 It sits at the base of a four-tier inheritance chain:
 
 ```
-foundation (this repo, public)  →  org (private)  →  department (private)  →  personal (private)
+foundation (this repo, public)  →  org (`<company>-copilot-internal`, private)  →  department (private)  →  personal (private)
 ```
 
 Higher tiers stay generic; lower tiers get specific. Content flows **down** only. Secrets
 never live here — or in any tier's git. They live in your OS keychain / a managed secret
 store; this repo carries only `requires_secret: <NAME>` references.
+
+**How copilots consume it.** A consuming project resolves its active knowledge repo through
+the ecosystem tooling — the org `-internal` tier, which inherits this foundation — and reads a
+stable set of canonical sub-paths from it. That read contract (the resolution step and the
+paths) is defined in
+[docs/00-knowledge-copilot/02-consumption-contract.md](docs/00-knowledge-copilot/02-consumption-contract.md);
+the guide to authoring a base from this scaffold is
+[docs/00-knowledge-copilot/01-build-a-kms.md](docs/00-knowledge-copilot/01-build-a-kms.md).
 
 ## Two layers, always separate
 
@@ -57,6 +65,7 @@ baselines the wizard uses.
 | `03-ai-enabling/` | The AI layer: reusable skills, agent profiles, prompt library |
 | `04-shared-systems/` | Cross-cutting systems that aren't products (design system, infra) |
 | `templates/` | The wizard's baselines (company profiles + personal layer) |
+| `docs/` | How the foundation works and how copilots read it (build-a-KMS guide + consumption contract) |
 
 Nothing here names a real company. Fill it in with the wizard, or by hand.
 
