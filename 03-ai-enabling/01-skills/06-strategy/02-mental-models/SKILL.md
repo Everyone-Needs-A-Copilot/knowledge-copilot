@@ -385,6 +385,4 @@ Instead of enterprise, invest $2M in:
 ## References
 
 - Poor Charlie's Almanack: Munger's model collection
-- forces-quick: Quick force identification
-- forces-analysis: Deep organizational forces
 - pattern-recognition: Finding patterns across models

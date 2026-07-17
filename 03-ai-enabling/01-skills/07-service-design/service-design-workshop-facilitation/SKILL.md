@@ -167,6 +167,4 @@ Capture value and maintain momentum:
 
 ## References
 
-- CoLab facilitation: `02-facilitation/01-colab/SKILL.md`
-- CoCreate sprint: `02-facilitation/02-cocreate/SKILL.md`
 - Customer journey mapping: `07-service-design/customer-journey-mapping/SKILL.md`

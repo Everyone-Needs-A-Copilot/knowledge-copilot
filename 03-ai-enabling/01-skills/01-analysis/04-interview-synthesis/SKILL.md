@@ -309,6 +309,4 @@ Synthesize forces across all participants:
 ## References
 
 - thematic-analysis: Systematic coding methodology
-- forces-analysis: Forces framework details
-- moments-mapping: Force identification techniques
 - interview-guide-design: Source interview structure

@@ -261,4 +261,3 @@ Thank you so much for your time. This has been incredibly helpful.
 - Christensen: Jobs to Be Done Handbook
 - Portigal: Interviewing Users
 - switch-interview-framework: Standard JTBD interview structure
-- moments-mapping: Forces exploration methodology

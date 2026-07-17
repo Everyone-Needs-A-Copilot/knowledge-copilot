@@ -28,7 +28,7 @@ Deliver the following:
 3) **API & surface area audit**
    - Public/internal APIs, webhooks, queues, jobs, cron/CLI entrypoints
    - Rate limits, auth methods, error models, pagination/filters
-   - Required env vars (names only) and secrets locations (Coolify/GitHub)
+   - Required env vars (names only) and secrets locations (your deployment platform — e.g. Railway, Fly.io, Render, Coolify, self-hosted — or GitHub)
 
 4) **Data, infra, and AI inventory**
    - Datastores, vector DBs, caches/queues, migrations, backup/restore paths

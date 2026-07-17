@@ -470,6 +470,5 @@ Synthesize into visual/tabular format:
 ## References
 
 - interview-synthesis: Extracting journey data from interviews
-- forces-analysis: Forces framework for decision stages
 - touchpoint-analysis: Deep-dive on specific touchpoints
 - pattern-recognition: Finding patterns across journeys

@@ -164,6 +164,4 @@ so I can [outcome].
 
 ## References
 
-- Forces of progress mapping: `07-service-design/forces-of-progress-mapping/SKILL.md`
-- Moments Framework: `01-company/06-methodologies/20-moments-framework.md`
 - Customer journey mapping: `07-service-design/customer-journey-mapping/SKILL.md`

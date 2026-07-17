@@ -10,7 +10,7 @@ Use these instructions when asking an LLM to draft or update product docs under 
 ## Inputs to Provide the LLM
 - Product name and purpose
 - Current architecture/stack (frontend, backend, services, datastores, AI)
-- Environments and deployment platform (Coolify, domains, ports)
+- Environments and deployment platform (e.g. Railway, Fly.io, Render, Coolify, self-hosted; domains, ports)
 - Integrations (n8n, OAuth providers, third-party APIs, email/CRM)
 - Security requirements (data sensitivity, auth, secrets handling)
 - Observability/ops practices (logging, metrics, alerts, backups)
@@ -38,7 +38,7 @@ Create or update the following files under `02-products/<product-slug>/`:
 
 ## Required Details per File
 - **Architecture:** Diagram description (text), core services, data stores, AI/ML components, queues/jobs, external dependencies, performance/availability targets.
-- **Deployment:** Branch → environment mapping, build/runtime versions, env vars (names + purpose, no secrets), secrets locations (Coolify/GitHub), SSL/ACME steps, smoke tests; note SSH tunnel commands/requirements for DB access.
+- **Deployment:** Branch → environment mapping, build/runtime versions, env vars (names + purpose, no secrets), secrets locations (your deployment platform — e.g. Railway, Fly.io, Render, Coolify, self-hosted — or GitHub), SSL/ACME steps, smoke tests; note SSH tunnel commands/requirements for DB access.
 - **Operations:** Log locations, metrics/alerts, backup/restore steps, common incident runbooks with commands to run.
 - **Integrations:** Endpoints, auth methods, payload schemas, retry/timeout expectations, rate limits.
 - **API:** Auth, major endpoints, request/response examples, error codes, pagination/filters.

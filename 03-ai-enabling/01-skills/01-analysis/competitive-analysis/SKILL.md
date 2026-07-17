@@ -473,5 +473,4 @@ Synthesize for sales/strategy use:
 
 - pattern-recognition: Finding patterns across competitors
 - interview-synthesis: Extracting competitive insights from interviews
-- forces-analysis: Understanding market forces
 - mental-models: Strategic frameworks for analysis

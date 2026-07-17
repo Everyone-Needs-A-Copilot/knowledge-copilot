@@ -28,7 +28,7 @@ Please analyze the codebase and deliver the following:
 3) **API & surface area audit**
    - List all public/internal APIs, webhooks, queues, jobs, and CLI/cron entrypoints
    - Capture rate limits, auth methods, and error models
-   - Identify required env vars (names only) and secrets locations (Coolify/GitHub)
+   - Identify required env vars (names only) and secrets locations (your deployment platform — e.g. Railway, Fly.io, Render, Coolify, self-hosted — or GitHub)
 
 4) **Data & infra inventory**
    - Datastores, vector DBs, cache/queue usage, migrations, backup/restore paths

@@ -25,10 +25,10 @@ All sub-paths below are relative to `$CC_KNOWLEDGE_REPO`.
 |--------|----------|-----------|
 | Brand identity & visual | `01-company/01-brand/` | `02-tone-of-voice.md`, `01-brand-colors.md`, `03-ui-style-guide.md`, `06-brand-design-brief.md` |
 | Voice, tone & principles | `01-company/02-voice/` | `00-overview.md`, `01-identity.md`, `02-principles.md`, `04-philosophy.md`, `08-manifesto.md` |
-| Services & offerings | `01-company/03-services/` | `00-overview.md`, `01-engagement-journey.md`, `05-colab.md`, `06-cocreate.md`, `07-fractional-copilot.md` |
+| Services & offerings | `01-company/03-services/` | `00-overview.md`, `01-engagement-journey.md`, your service overviews (e.g. `05-<service-name>.md`, `06-<service-name>.md`, `07-<service-name>.md`) |
 | Go-to-market | `01-company/04-gtm/` | `00-overview.md`, `01-gtm-plan.md` |
 | Communication patterns | `01-company/05-patterns/` | messaging frameworks, channel patterns |
-| Methodologies & process | `01-company/06-methodologies/` | `01-forces-framework.md`, `02-moments-framework.md`, `03-colab-methodology.md`, `04-cocreate-methodology.md` |
+| Methodologies & process | `01-company/06-methodologies/` | your methodology docs (e.g. `01-<your-method>.md`, `02-<your-method>.md`, …) |
 | Company reference | `01-company/07-reference/` | positioning, market context, competitive landscape |
 | Products & capabilities | `02-products/` | `01-ecosystem/`, `02-foundational/`, `03-work/`, `04-applications/` |
 | AI skills & profiles | `03-ai-enabling/` | `01-skills/`, `02-profiles/` |
@@ -51,7 +51,7 @@ Before writing any copy or brand-aligned content:
 Before scoping work or building a service blueprint:
 
 1. Read `$CC_KNOWLEDGE_REPO/01-company/03-services/` for current service offerings
-2. Read `$CC_KNOWLEDGE_REPO/01-company/06-methodologies/` for approved methodologies (Forces, Moments, Colab, Cocreate)
+2. Read `$CC_KNOWLEDGE_REPO/01-company/06-methodologies/` for approved methodologies (your company's named frameworks and delivery methods)
 3. Read `$CC_KNOWLEDGE_REPO/02-products/` for the product portfolio being supported
 
 ---
