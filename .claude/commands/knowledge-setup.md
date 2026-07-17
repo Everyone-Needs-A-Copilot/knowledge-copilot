@@ -29,10 +29,18 @@ they're happy.
 
 ## 3. Propose the personal layer
 
-Independent of company size, propose the personal layer from `templates/personal-layer.md`
-— writing/voice style, working-style profile, decision principles, communication defaults,
-domain-expertise map, values, red-lines, tools & stack defaults. Explain that it shapes how
-every copilot writes *and* works for them. Let them reshape it.
+Independent of company size, propose the personal layer from `templates/personal/` (indexed by
+`templates/personal-layer.md`). It's their professional **second brain** — durable operating
+knowledge, not a diary or secrets. The set:
+- **How I operate:** how-i-communicate · how-i-process-information · how-i-decide · working-preferences
+- **What I work on:** what-i-work-on · recurring-and-automation (surfaces automation candidates)
+- **Memory & people:** durable-facts · key-people
+- **Competence & tools:** role-and-expertise · tools-and-stack
+
+Explain it shapes how every copilot writes *and* works for them, and have them **start with the
+three anchors** (how-i-communicate, how-i-process-information, what-i-work-on) + durable-facts —
+not fill everything at once. Let them reshape the set. Each `personal/<doc>` template carries
+guiding prompts + a worked example.
 
 ## 4. Confirm
 
