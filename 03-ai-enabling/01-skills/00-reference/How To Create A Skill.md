@@ -143,7 +143,7 @@ Chain multiple CLI commands into business workflows. Examples: deploy-product, i
 
 ### Knowledge/Methodology Skills
 
-Teach frameworks, mental models, or decision criteria. Examples: forces-analysis, design-patterns, code-review.
+Teach frameworks, mental models, or decision criteria. Examples: competitive-analysis, design-patterns, code-review.
 
 **Characteristics:**
 - Framework section teaches HOW to think about the domain
@@ -211,13 +211,13 @@ The skills-copilot evaluation engine weights fields:
 
 | Field | Weight | Tips |
 |-------|--------|------|
-| `name` | 0.40 | kebab-case, 2-3 words, action-oriented (deploy-product, not coolify-helper) |
+| `name` | 0.40 | kebab-case, 2-3 words, action-oriented (deploy-product, not platform-helper) |
 | `triggers.keywords` | 0.35 | Include tool names, service names, business terms, AND synonyms |
 | `triggers.files` | 0.25 | File patterns that trigger this skill (for file-context skills) |
 | `description` | 0.15 | 1-2 sentences: what it does + when to use it |
 
 **Keyword strategy:**
-- Technical terms the agent would search: "deploy", "coolify", "docker"
+- Technical terms the agent would search: "deploy", "release", "docker"
 - Business terms the user would say: "ship", "release", "go live"
 - Error terms that might trigger the skill: "unhealthy", "503", "connection refused"
 
@@ -255,7 +255,7 @@ Mark steps to help agents prioritize:
 
 ## Common Mistakes
 
-1. **Vague instructions** -- "deploy the app" instead of `copilot coolify deploy trigger --app-uuid "$UUID" --json`
+1. **Vague instructions** -- "deploy the app" instead of `deploy trigger --app-id "$APP_ID" --json`
 2. **No error handling** -- "check logs" instead of mapping to specific error types with recovery commands
 3. **Generic keywords** -- "manage", "handle" instead of domain-specific terms
 4. **Missing Define Done** -- no way to know when the skill's workflow is complete

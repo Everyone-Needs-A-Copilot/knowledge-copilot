@@ -12,13 +12,14 @@ enforces it (`R1`..`R12`, implemented in `bin/check-initiatives.sh`). If a
 rule has no check next to it, it is not part of the standard — do not add
 a rule here without also adding its enforcement in `bin/check-initiatives.sh`,
 and do not add a check without documenting the rule here. The two files
-must never drift apart. (This is not a hypothetical: Convoco's own
-initiatives standard rotted exactly this way — its spec asserted 4 required
-things, its checker verified 2, and it had no git hook, only a README asking
-a human to remember to run `npm run verify:docs`. Result: 19 of 36
-initiative folders drifted from the spec, 10 had empty ceremony directories,
-and 3 were missing from the hand-maintained index. A rule that isn't checked
-mechanically, and checked on every commit, is not a rule — it's a wish.)
+must never drift apart. (This is not a hypothetical: one real internal
+product's initiatives standard rotted exactly this way — its spec asserted 4
+required things, its checker verified 2, and it had no git hook, only a
+README asking a human to remember to run `npm run verify:docs`. Result: 19 of
+36 initiative folders drifted from the spec, 10 had empty ceremony
+directories, and 3 were missing from the hand-maintained index. A rule that
+isn't checked mechanically, and checked on every commit, is not a rule —
+it's a wish.)
 
 ## What an initiative is
 
@@ -151,7 +152,8 @@ Why warn instead of fail for R10/R12: a legacy repo with years of loose
 notes files needs to be able to turn the hook on **today**, see the debt,
 and converge over time — not be told the hook can't be installed until a
 big-bang cleanup happens first. If failing on day one is the only option,
-teams disable the hook, and we're back to the Convoco outcome. `--strict`
+teams disable the hook, and we're back to the drifted-standard outcome
+described above. `--strict`
 exists for new repos that want the tighter bar from the start.
 
 ## Rule reference (complete)

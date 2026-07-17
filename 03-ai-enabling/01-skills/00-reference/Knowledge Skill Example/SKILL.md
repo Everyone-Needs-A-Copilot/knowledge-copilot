@@ -1,197 +1,186 @@
 ---
-last_updated: 2026-02-25
+last_updated: 2026-07-17
 status: active
-name: forces-analysis
+name: competitive-analysis
 description: >-
-  Analyze strategic forces acting on a person, company, or situation using the Forces Framework.
-  Use when preparing for strategic conversations, qualifying opportunities, or diagnosing resistance.
+  Analyze a competitor's market position across product, momentum, and switching-cost dimensions
+  using a structured Competitive Pressure Framework. Use when evaluating a competitive threat,
+  preparing a battlecard, or deciding how to differentiate.
 triggers:
-  keywords: ["forces", "analysis", "strategic", "push", "pull", "tension", "resistance",
-             "motivation", "blocker", "driver", "friction", "momentum", "switch"]
+  keywords: ["competitor", "competitive analysis", "battlecard", "market position", "differentiation",
+             "positioning", "win-loss", "threat", "switching cost", "momentum"]
 allowed-tools: Read, Write, Edit
 ---
 
-# Forces Analysis
+# Competitive Analysis
 
 ## Overview
 
-Apply the Forces Framework to understand what's driving or blocking a change, decision, or relationship. Forces are the invisible dynamics -- tensions, motivations, anxieties, and habits -- that shape every strategic situation. This skill teaches how to identify, categorize, and act on forces.
+Apply the Competitive Pressure Framework to understand how much ground a competitor is gaining -- or losing -- against you in a specific account, segment, or market. Competitive pressure is made up of visible dynamics -- product advantages, market momentum, real weaknesses, and switching costs -- that shape whether a customer stays, leaves, or never considers you at all. This skill teaches how to identify, categorize, and act on those signals.
 
 ## Define Done
 
-A forces analysis is complete when:
+A competitive analysis is complete when:
 
-- [ ] All 4 force types identified (Push, Pull, Anxiety, Habit)
-- [ ] Each force has evidence (not speculation)
-- [ ] Forces are ranked by intensity (1-5 scale)
-- [ ] Net force direction determined (favoring change or status quo)
-- [ ] Recommended actions address the dominant forces
+- [ ] All 4 signal types identified (Advantage, Momentum, Weakness, Switching Cost)
+- [ ] Each signal has evidence (not speculation)
+- [ ] Signals are ranked by intensity (1-5 scale)
+- [ ] Net competitive pressure determined (favoring the competitor or favoring you)
+- [ ] Recommended actions address the dominant signals
 
 ## Prerequisites
 
-- Situation context: who, what change, what's at stake
-- Data sources: conversation history, relationship data, market signals
-- For copilot-enriched analysis: `copilot conv forces list --json`, `copilot insights forces list --json`
+- Situation context: which competitor, which account or segment, what's at stake
+- Data sources: sales call notes, win/loss interviews, public materials (pricing pages, review sites, job postings)
+- For enriched analysis: exported CRM notes or a win/loss interview transcript, if available
 
 ## Framework
 
-The Forces Framework identifies 4 types of forces acting on any change:
+The Competitive Pressure Framework identifies 4 types of signals acting on any competitive situation:
 
-| Force Type | Direction | Description | Example |
+| Signal Type | Direction | Description | Example |
 |-----------|-----------|-------------|---------|
-| **Push** | Toward change | Pain with current situation | "Our current tool is costing us 40% more than competitors" |
-| **Pull** | Toward change | Attraction of the new | "The new platform has AI features we need" |
-| **Anxiety** | Against change | Fear of the new | "What if the migration fails and we lose data?" |
-| **Habit** | Against change | Comfort with current | "Our team knows the current tool inside-out" |
+| **Advantage** | Toward losing ground | A specific edge the competitor has today | "Their product ships a feature we don't have yet" |
+| **Momentum** | Toward losing ground | The competitor is gaining traction | "They've won 3 deals in our pipeline this quarter" |
+| **Weakness** | Toward holding ground | A real gap or vulnerability in the competitor's offering | "Their support SLAs are worse than ours" |
+| **Switching Cost** | Toward holding ground | Friction that keeps the customer from moving | "Migrating their data would take 6+ weeks" |
 
-### Force Intensity Scale
+### Threat Intensity Scale
 
 | Level | Intensity | Indicator |
 |-------|-----------|-----------|
-| 1 | Awareness | Person mentions it casually |
-| 2 | Interest | Person asks questions about it |
-| 3 | Concern | Person brings it up unprompted |
-| 4 | Urgency | Person is actively seeking solutions |
-| 5 | Crisis | Person must act now -- blocking everything else |
+| 1 | Awareness | Signal is mentioned casually, not yet acted on |
+| 2 | Interest | Prospect or customer asks questions about the competitor |
+| 3 | Concern | Competitor comes up unprompted in conversations |
+| 4 | Urgency | Prospect or customer is actively evaluating the competitor |
+| 5 | Crisis | A deal or renewal is actively at risk right now |
 
-### Net Force Calculation
+### Net Pressure Calculation
 
 ```
-Net = (Sum of Push + Pull intensities) - (Sum of Anxiety + Habit intensities)
+Net = (Sum of Advantage + Momentum intensities) - (Sum of Weakness + Switching Cost intensities)
 
-Net > 0  -> Change is likely -- focus on reducing remaining anxiety
-Net = 0  -> Stalemate -- one force shift tips the balance
-Net < 0  -> Status quo wins -- must increase push/pull or reduce anxiety/habit
+Net > 0  -> Competitor is gaining ground -- focus on closing the advantage gap
+Net = 0  -> Stalemate -- one signal shift tips the balance
+Net < 0  -> You are well-positioned -- competitor unlikely to displace you
 ```
 
 ## Instructions
 
-### Step 1: Gather Force Evidence (REQUIRED)
+### Step 1: Gather Competitive Evidence (REQUIRED)
 
 Collect data from available sources:
 
-**From Conversations Copilot:**
-```bash
-copilot conv forces list --json          # Existing identified forces
-copilot conv people personality --id <id> --json   # Personality affects force sensitivity
-copilot conv conversations list --json   # Recent conversation context
-```
+**From your own records:**
+- Recent sales call notes and objection logs
+- Past win/loss interview summaries
+- Support and renewal conversation notes
 
-**From Insights Copilot:**
-```bash
-copilot insights forces list --json      # Market-level forces
-copilot insights synthesis patterns --json  # Cross-force patterns
-```
+**From public sources:**
+- Competitor pricing pages and feature comparison pages
+- Review sites (G2, Capterra, or your industry's equivalent)
+- Job postings (signal where the competitor is investing)
 
-**From direct observation:** quotes, behaviors, decisions, hesitations.
+**From direct observation:** quotes, behaviors, decisions, hesitations from prospects or customers.
 
-### Step 2: Categorize Each Force (REQUIRED)
+### Step 2: Categorize Each Signal (REQUIRED)
 
-For each force identified, determine:
-1. **Type:** Push, Pull, Anxiety, or Habit
+For each signal identified, determine:
+1. **Type:** Advantage, Momentum, Weakness, or Switching Cost
 2. **Evidence:** Specific quote, data point, or observed behavior
 3. **Intensity:** 1-5 scale
-4. **Validated:** Has this been confirmed by the person, or is it inferred?
+4. **Validated:** Has this been confirmed directly, or is it inferred?
 
-### Step 3: Calculate Net Direction (REQUIRED)
+### Step 3: Calculate Net Pressure (REQUIRED)
 
-Sum the pro-change forces (Push + Pull) and anti-change forces (Anxiety + Habit). Determine the net direction and magnitude.
+Sum the ground-losing signals (Advantage + Momentum) and ground-holding signals (Weakness + Switching Cost). Determine the net direction and magnitude.
 
 ### Step 4: Recommend Actions (REQUIRED)
 
-Based on the net force direction:
+Based on the net pressure direction:
 
 | Net Direction | Strategy | Actions |
 |---------------|----------|---------|
-| Strong positive (>5) | Accelerate | Remove remaining friction, propose next step |
-| Weak positive (1-5) | Nurture | Address top anxiety, reinforce strongest pull |
-| Neutral (0) | Tip the balance | Find the one force that's easiest to shift |
-| Weak negative (-1 to -5) | Reframe | Introduce new push force or reduce top habit |
-| Strong negative (<-5) | Wait or pivot | Situation isn't ready -- monitor for change triggers |
+| Strong positive (>5) | Respond now | Close the top advantage gap, escalate internally |
+| Weak positive (1-5) | Reinforce | Address the top weakness signal, lean on switching costs |
+| Neutral (0) | Tip the balance | Find the one signal that's easiest to shift |
+| Weak negative (-1 to -5) | Monitor | Keep tracking; no urgent action needed |
+| Strong negative (<-5) | Hold position | Situation is stable -- revisit if new signals appear |
 
-### Step 5: Validate Forces (OPTIONAL)
+### Step 5: Validate Signals (OPTIONAL)
 
-Use the next conversation to test your analysis:
-
-```bash
-# After conversation, mark forces as validated
-copilot conv forces validate --id <force_id> --json
-```
+Use the next customer or prospect conversation to test your analysis, then mark which signals were confirmed versus which turned out to be inferred only.
 
 ## Examples
 
-### Example: Technology Migration Decision
+### Example: Renewal at Risk
 
-**Situation:** Client considering switching from legacy CRM to new platform.
+**Situation:** Existing customer's renewal is approaching; a competitor has entered the conversation.
 
-**Forces identified:**
+**Signals identified:**
 
-| # | Type | Force | Evidence | Intensity |
-|---|------|-------|----------|-----------|
-| 1 | Push | Data silos causing missed opportunities | "We lost a deal because sales didn't see support's notes" | 4 |
-| 2 | Push | Rising costs of legacy maintenance | Maintenance contract up 30% this year | 3 |
-| 3 | Pull | AI-powered insights in new platform | "The predictive scoring demo was impressive" | 3 |
-| 4 | Anxiety | Migration risk to active deals | "We can't afford any downtime during Q4" | 4 |
-| 5 | Anxiety | Team retraining time | "My team barely learned the current system" | 3 |
-| 6 | Habit | Existing integrations work | "Everything is wired up and running" | 2 |
+| # | Type | Signal | Evidence | Intensity |
+|---|------|--------|----------|-----------|
+| 1 | Advantage | Competitor has a native mobile app | "Their app was the first thing our field team asked about" | 4 |
+| 2 | Momentum | Competitor recently raised a large funding round | Public press release, increased ad spend observed | 2 |
+| 3 | Weakness | Competitor's onboarding takes 2x longer | Reference call with a mutual former prospect | 3 |
+| 4 | Switching Cost | Customer has 3 years of historical data and integrations | "We'd lose our whole audit trail if we moved" | 4 |
 
 **Net calculation:**
-- Pro-change: 4 + 3 + 3 = 10
-- Anti-change: 4 + 3 + 2 = 9
-- **Net: +1 (weak positive)**
+- Ground-losing: 4 + 2 = 6
+- Ground-holding: 3 + 4 = 7
+- **Net: -1 (weak negative)**
 
-**Strategy:** Nurture -- address the top anxiety (migration risk) by proposing a phased rollout that avoids Q4.
+**Strategy:** Monitor -- reinforce the switching-cost advantage in the renewal conversation while quietly scoping the mobile-app gap for next quarter's roadmap.
 
-### Example: Relationship Stagnation
+### Example: New Logo Evaluation
 
-**Situation:** Long-term client engagement losing momentum.
+**Situation:** A prospect is actively comparing you against a well-known competitor.
 
-| # | Type | Force | Evidence | Intensity |
-|---|------|-------|----------|-----------|
-| 1 | Habit | Comfortable with status quo | Declining meeting frequency, "things are fine" | 4 |
-| 2 | Push | Competitor gaining ground | Client mentioned a competitor's new feature twice | 3 |
-| 3 | Pull | Strategic planning season | "We need to figure out next year's priorities" | 2 |
-| 4 | Anxiety | Budget uncertainty | "We're not sure about next year's budget yet" | 3 |
+| # | Type | Signal | Evidence | Intensity |
+|---|------|--------|----------|-----------|
+| 1 | Momentum | Competitor is the default choice in this vertical | "Everyone we talked to already uses them" | 4 |
+| 2 | Advantage | Competitor has a lower entry price | Public pricing page comparison | 3 |
+| 3 | Weakness | Competitor's support is community-forum-only | Review-site complaints about response time | 3 |
+| 4 | Weakness | Competitor lacks a feature the prospect called "must-have" | Discovery call notes | 4 |
 
-**Net: +5 - 7 = -2 (weak negative)**
+**Net: 7 - 7 = 0 (stalemate)**
 
-**Strategy:** Reframe -- introduce a new push force by surfacing competitive intelligence the client hasn't seen.
+**Strategy:** Tip the balance -- lead with the missing "must-have" feature, since it's the single easiest signal to shift in this deal.
 
 ## Quality Tests
 
-### Force Completeness Test
-- All 4 force types have been considered (not just push and pull)
-- **PASS:** Analysis includes at least one force from each of the 4 types, or explicitly notes why a type has no forces
-- **FAIL:** Only push and pull forces listed -- anxiety and habit ignored
+### Signal Completeness Test
+- All 4 signal types have been considered (not just advantage and momentum)
+- **PASS:** Analysis includes at least one signal from each of the 4 types, or explicitly notes why a type has no signals
+- **FAIL:** Only advantage and momentum signals listed -- weakness and switching cost ignored
 
 ### Evidence Test
-- Every force has specific evidence, not vague assertions
-- **PASS:** Each force cites a quote, data point, behavior, or observation
-- **FAIL:** Force listed as "they seem resistant" without specific evidence
+- Every signal has specific evidence, not vague assertions
+- **PASS:** Each signal cites a quote, data point, or observation
+- **FAIL:** Signal listed as "they seem to be winning" without specific evidence
 
 ### Actionability Test
-- Recommended actions directly address the dominant forces
-- **PASS:** Top-intensity force has a specific recommended action
-- **FAIL:** Generic advice ("build trust") that doesn't target a specific force
+- Recommended actions directly address the dominant signals
+- **PASS:** Top-intensity signal has a specific recommended action
+- **FAIL:** Generic advice ("compete harder") that doesn't target a specific signal
 
 ### Validation Test
-- Analysis distinguishes between observed and inferred forces
-- **PASS:** Each force marked as "validated" (confirmed by person) or "inferred" (analyst's assessment)
-- **FAIL:** All forces presented with equal confidence regardless of evidence quality
+- Analysis distinguishes between observed and inferred signals
+- **PASS:** Each signal marked as "validated" (confirmed directly) or "inferred" (analyst's assessment)
+- **FAIL:** All signals presented with equal confidence regardless of evidence quality
 
 ## Guidelines
 
-1. Always check all 4 force types -- anxiety and habit are easy to miss
-2. Higher-intensity forces deserve more investigation, not just acknowledgment
-3. Net force direction determines strategy -- don't fight strong negatives
-4. Validate inferred forces in the next conversation before acting on them
-5. Forces change over time -- re-analyze after significant events
-6. Cross-reference Conv forces (relationship-level) with Insights forces (market-level) for full picture
+1. Always check all 4 signal types -- weakness and switching cost are easy to skip when a competitor feels scary
+2. Higher-intensity signals deserve more investigation, not just acknowledgment
+3. Net pressure direction determines strategy -- don't overreact to a single strong-negative signal
+4. Validate inferred signals in the next conversation before acting on them
+5. Signals change over time -- re-analyze after a lost deal, a won deal, or a competitor product launch
+6. Cross-reference account-level signals (this specific deal) with market-level signals (the broader competitive landscape) for the full picture
 
 ## References
 
-- Related skills: `conversation-prep`, `intelligence-brief`
-- Forces data: `copilot conv forces list --json` (relationship forces)
-- Market forces: `copilot insights forces list --json` (strategic forces)
-- Force types reference: `reference/force-types.md`
+- Related skills: `pricing-models`
+- Signal types reference: `reference/signal-types.md`
 - Output template: `reference/output-template.md`
