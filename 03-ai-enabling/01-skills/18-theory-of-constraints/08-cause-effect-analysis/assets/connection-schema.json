@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CLR Connections Input",
+  "description": "Input schema for clr_full_audit.py. Defines a list of cause-effect connections to be audited against the Categories of Legitimate Reservation.",
+  "type": "object",
+  "required": ["connections"],
+  "properties": {
+    "connections": {
+      "type": "array",
+      "description": "List of cause-effect connections to audit.",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/connection"
+      }
+    },
+    "context": {
+      "type": "string",
+      "description": "Optional: name or description of the thinking process tree these connections belong to (e.g., 'Q3 CRT — Delivery Delays')."
+    }
+  },
+  "definitions": {
+    "connection": {
+      "type": "object",
+      "required": ["id", "cause", "effect", "rationale"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this connection. Convention: C01, C02, etc., or descriptive IDs like 'CAUSE_DEPLOY_TO_BATCH'.",
+          "examples": ["C01", "C02", "DEPLOY_TIME_TO_BATCHING"]
+        },
+        "cause": {
+          "type": "string",
+          "minLength": 10,
+          "description": "The cause entity. Must be a complete declarative sentence describing a specific condition that currently exists (for CRT) or will exist (for FRT). NOT a noun or topic — a full statement of a condition.",
+          "examples": [
+            "The deployment pipeline takes 4 hours to complete",
+            "Only one engineer understands the payment integration module",
+            "All production releases require VP-level approval before deployment"
+          ]
+        },
+        "effect": {
+          "type": "string",
+          "minLength": 10,
+          "description": "The effect entity. Must be a complete declarative sentence describing the condition produced by the cause. Must be distinct from the cause — not a restatement or synonym.",
+          "examples": [
+            "Engineers batch their commits and push once per day rather than continuously",
+            "Payment-related bugs take three times longer to resolve than bugs in other areas",
+            "The average time between code-complete and production deployment is 4 days"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 20,
+          "description": "The causal mechanism connecting cause to effect. Must explain WHY the cause produces the effect — not just that they are correlated or that one occurred before the other. Should be specific enough that a person unfamiliar with the system could understand and challenge the mechanism.",
+          "examples": [
+            "A 4-hour pipeline means feedback on a commit arrives hours after submission, often outside working hours. Engineers adapt by accumulating changes and pushing larger batches to reduce the number of times they must wait.",
+            "Because only one engineer understands the payment module, all payment bugs are routed to that engineer regardless of complexity. Other engineers cannot assist, so the queue grows and resolution time is determined by that engineer's availability."
+          ]
+        },
+        "tree_id": {
+          "type": "string",
+          "description": "Optional: identifier of the parent tree node this connection belongs to (useful when auditing a complete CRT/FRT with many connections)."
+        },
+        "and_connected_with": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Optional: list of other connection IDs that are AND-connected with this one to produce the effect. When present, the effect requires ALL listed causes. If omitted, the cause is asserted as sufficient on its own.",
+          "examples": [["C02", "C03"]]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "examples": [
+    {
+      "context": "Delivery Velocity CRT — Q1 Analysis",
+      "connections": [
+        {
+          "id": "C01",
+          "cause": "The deployment pipeline takes 4 hours to complete",
+          "effect": "Engineers accumulate commits and push large batches once per day",
+          "rationale": "A 4-hour feedback cycle makes continuous commit-and-verify impractical. Engineers learn to batch work to reduce wait time, which increases the size of each deployment and the risk of integration conflicts."
+        },
+        {
+          "id": "C02",
+          "cause": "Engineers accumulate commits and push large batches once per day",
+          "effect": "Integration conflicts increase and require 2-3 hours of resolution time per week per developer",
+          "rationale": "Large batches from multiple developers accumulating simultaneously have a higher probability of touching the same files. The larger the batch, the more likely and complex the merge conflict.",
+          "and_connected_with": ["C03"]
+        },
+        {
+          "id": "C03",
+          "cause": "The team has no automated conflict detection until merge time",
+          "effect": "Integration conflicts increase and require 2-3 hours of resolution time per week per developer",
+          "rationale": "Without trunk-based development or feature flag tooling, conflicts are only discovered when branches are merged. Earlier detection would reduce resolution cost.",
+          "and_connected_with": ["C02"]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Prerequisite Tree Input",
+  "description": "Input schema for prt_builder.py. Defines an ambitious target and the obstacles that must be overcome to reach it, each with an intermediate objective and dependency list.",
+  "type": "object",
+  "required": ["target", "obstacles"],
+  "additionalProperties": false,
+  "properties": {
+    "target": {
+      "type": "string",
+      "description": "The ambitious target — a single clear statement of what you want to achieve. State as a positive condition that will exist when the goal is reached.",
+      "minLength": 10,
+      "examples": [
+        "Enterprise tier is live and generating revenue from at least 3 paying enterprise customers",
+        "Self-serve onboarding converts users to paid plans without human intervention"
+      ]
+    },
+    "obstacles": {
+      "type": "array",
+      "description": "Every obstacle standing between the current state and the target. Each obstacle must have an intermediate objective (IO) that neutralizes it.",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/Obstacle"
+      }
+    }
+  },
+  "definitions": {
+    "Obstacle": {
+      "type": "object",
+      "required": ["id", "description", "intermediate_objective"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for this obstacle. Used in dependency references. Convention: O1, O2, O3 or descriptive slugs like 'no-sso'.",
+          "pattern": "^[A-Za-z0-9_-]+$",
+          "examples": ["O1", "O2", "no-sso", "pricing-unvalidated"]
+        },
+        "description": {
+          "type": "string",
+          "description": "The obstacle as a current negative condition. State what is missing or wrong today, not what you plan to do about it. Start with 'We have no...', 'There is no...', or 'X does not...'",
+          "minLength": 10,
+          "examples": [
+            "We have no SSO integration",
+            "Enterprise pricing has not been validated with real prospects",
+            "The sales team has no enterprise pitch materials"
+          ]
+        },
+        "intermediate_objective": {
+          "type": "string",
+          "description": "The minimum positive condition that neutralizes this obstacle. Must be verifiable by any observer — a clear definition of done. State as 'X exists', 'X is true', or 'X can do Y'.",
+          "minLength": 10,
+          "examples": [
+            "SSO authenticates users via SAML 2.0 against at least one enterprise identity provider",
+            "3 target enterprise prospects confirm willingness to pay at the proposed price point",
+            "Admins can invite, remove, and assign roles to team members via a self-serve UI"
+          ]
+        },
+        "dependencies": {
+          "type": "array",
+          "description": "IDs of other obstacles whose intermediate objectives must be achieved before this obstacle can be addressed. Leave empty for obstacles that can be tackled immediately.",
+          "items": {
+            "type": "string",
+            "description": "An obstacle ID from the same obstacles list"
+          },
+          "uniqueItems": true,
+          "default": [],
+          "examples": [
+            [],
+            ["O1"],
+            ["O1", "O2"]
+          ]
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "target": "Enterprise tier is live and generating revenue from at least 3 paying enterprise customers",
+      "obstacles": [
+        {
+          "id": "O1",
+          "description": "We have no SSO integration",
+          "intermediate_objective": "SSO authenticates users via SAML 2.0 against at least one enterprise identity provider",
+          "dependencies": []
+        },
+        {
+          "id": "O2",
+          "description": "Enterprise pricing has not been validated with real prospects",
+          "intermediate_objective": "3 target enterprise prospects confirm willingness to pay at the proposed price point",
+          "dependencies": []
+        },
+        {
+          "id": "O3",
+          "description": "We have no admin UI for managing team members",
+          "intermediate_objective": "Admins can invite, remove, and assign roles to team members via a self-serve UI",
+          "dependencies": ["O1"]
+        },
+        {
+          "id": "O4",
+          "description": "The sales team has no enterprise pitch materials",
+          "intermediate_objective": "Sales deck, ROI calculator, and security FAQ are approved and available to all AEs",
+          "dependencies": ["O2"]
+        },
+        {
+          "id": "O5",
+          "description": "We have no dedicated enterprise onboarding process",
+          "intermediate_objective": "Enterprise onboarding playbook has been piloted end-to-end with one real customer",
+          "dependencies": ["O3", "O4"]
+        }
+      ]
+    }
+  ]
+}

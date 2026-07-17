@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Evaporating Cloud Input",
+  "description": "Input schema for cloud_builder.py and assumption_analyzer.py",
+  "type": "object",
+  "required": ["objective", "need_a", "need_b", "want_a", "want_b", "assumptions"],
+  "additionalProperties": false,
+  "properties": {
+    "objective": {
+      "type": "string",
+      "description": "Box A — the shared goal both sides of the conflict want to achieve",
+      "minLength": 8
+    },
+    "need_a": {
+      "type": "string",
+      "description": "Box B — first condition necessary to achieve the objective",
+      "minLength": 8
+    },
+    "need_b": {
+      "type": "string",
+      "description": "Box C — second condition also necessary to achieve the objective",
+      "minLength": 8
+    },
+    "want_a": {
+      "type": "string",
+      "description": "Box D — what satisfies Need B (one side's position in the conflict)",
+      "minLength": 8
+    },
+    "want_b": {
+      "type": "string",
+      "description": "Box D' — what satisfies Need C (the conflicting position)",
+      "minLength": 8
+    },
+    "assumptions": {
+      "type": "array",
+      "description": "Hidden assumptions behind each arrow of the cloud",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["arrow", "statement", "type"],
+        "additionalProperties": false,
+        "properties": {
+          "arrow": {
+            "type": "string",
+            "description": "Which arrow this assumption supports",
+            "enum": ["A-B", "A-C", "B-D", "C-D'", "D-D'"]
+          },
+          "statement": {
+            "type": "string",
+            "description": "The assumption stated as a falsifiable claim",
+            "minLength": 10
+          },
+          "type": {
+            "type": "string",
+            "description": "Category of assumption — determines base vulnerability score",
+            "enum": ["policy", "belief", "market", "physics"]
+          },
+          "evidence_for": {
+            "type": "string",
+            "description": "Evidence or reasoning supporting this assumption (used by assumption_analyzer.py)"
+          },
+          "evidence_against": {
+            "type": "string",
+            "description": "Evidence or observations that challenge this assumption"
+          },
+          "examined": {
+            "type": "boolean",
+            "description": "Has this assumption been explicitly questioned before? Default false = unexamined",
+            "default": false
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "objective": "Build a financially sustainable, growing business",
+      "need_a": "Generate enough revenue to scale operations",
+      "need_b": "Maintain positive cash flow and financial stability",
+      "want_a": "Invest aggressively in growth initiatives",
+      "want_b": "Minimize spending and preserve cash reserves",
+      "assumptions": [
+        {
+          "arrow": "B-D",
+          "statement": "Revenue growth requires proportional increases in headcount and marketing spend",
+          "type": "belief",
+          "evidence_for": "Historical data shows headcount growth has tracked revenue growth",
+          "evidence_against": "SaaS benchmarks show best-in-class companies grow revenue faster than headcount",
+          "examined": false
+        },
+        {
+          "arrow": "B-D",
+          "statement": "We cannot grow revenue through existing customers without new investment",
+          "type": "belief",
+          "evidence_for": "",
+          "evidence_against": "Expansion revenue from existing customers currently represents 0% of our growth",
+          "examined": false
+        },
+        {
+          "arrow": "C-D'",
+          "statement": "Our current cost structure does not allow for any reduction in revenue per unit",
+          "type": "policy",
+          "evidence_for": "Finance model shows break-even requires current pricing",
+          "evidence_against": "Fixed costs could be spread over more units if volume increased",
+          "examined": true
+        }
+      ]
+    }
+  ]
+}

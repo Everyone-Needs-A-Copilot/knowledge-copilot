@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Current Reality Tree Input",
+  "description": "Input schema for crt_builder.py and clr_validator.py",
+  "type": "object",
+  "required": ["udes", "connections"],
+  "additionalProperties": false,
+  "properties": {
+    "udes": {
+      "type": "array",
+      "description": "List of Undesirable Effects — the observable symptoms to be explained",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "description"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for this UDE (e.g. 'U1', 'U2')",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "description": "Declarative present-tense statement of the undesirable effect",
+            "minLength": 5
+          }
+        }
+      }
+    },
+    "connections": {
+      "type": "array",
+      "description": "Cause-effect connections between nodes",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["from_id", "to_id", "type", "rationale"],
+        "additionalProperties": false,
+        "properties": {
+          "from_id": {
+            "type": "string",
+            "description": "ID of the cause node",
+            "minLength": 1
+          },
+          "to_id": {
+            "type": "string",
+            "description": "ID of the effect node",
+            "minLength": 1
+          },
+          "type": {
+            "type": "string",
+            "description": "'causes' for a standard arrow; 'and_causes' when this arrow is part of an AND-connector group (both conditions required)",
+            "enum": ["causes", "and_causes"]
+          },
+          "rationale": {
+            "type": "string",
+            "description": "The causal mechanism — why does the cause produce the effect in this specific context?",
+            "minLength": 10
+          }
+        }
+      }
+    },
+    "nodes": {
+      "type": "object",
+      "description": "Optional map of node_id to description for intermediate cause nodes. Used by clr_validator.py for tautology checks.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "examples": [
+    {
+      "udes": [
+        { "id": "U1", "description": "Customer churn rate exceeds 8% per quarter" },
+        { "id": "U2", "description": "Sales cycle length has increased from 30 to 75 days" }
+      ],
+      "connections": [
+        {
+          "from_id": "C1",
+          "to_id": "U1",
+          "type": "causes",
+          "rationale": "Customers cancel when they do not achieve the outcomes they purchased the product to solve"
+        },
+        {
+          "from_id": "C2",
+          "to_id": "C1",
+          "type": "causes",
+          "rationale": "Generic onboarding does not help customers apply the product to their specific workflows, so value realization is delayed or missed"
+        },
+        {
+          "from_id": "C3",
+          "to_id": "C1",
+          "type": "and_causes",
+          "rationale": "Without proactive guidance, customers encounter obstacles they cannot self-resolve"
+        },
+        {
+          "from_id": "C4",
+          "to_id": "U2",
+          "type": "causes",
+          "rationale": "When prospects cannot quickly understand product value, they request more demos and extend evaluation periods before committing"
+        }
+      ],
+      "nodes": {
+        "C1": "Customers are not achieving desired outcomes with the product",
+        "C2": "Onboarding is generic and not tailored to customer workflows",
+        "C3": "Customer success team lacks capacity for proactive engagement",
+        "C4": "Prospects cannot quickly understand the product value proposition"
+      }
+    }
+  ]
+}
