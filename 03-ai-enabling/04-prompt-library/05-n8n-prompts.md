@@ -5,7 +5,7 @@ status: active
 
 # n8n Prompts
 
-Prompts for building and iterating on n8n automation workflows. Includes a system prompt for the n8n automation assistant persona, context-setup guidance, and conversation starters for specific workflow events. Developed in the context of the Forces Assessment lead generation system.
+Prompts for building and iterating on n8n automation workflows. Includes a system prompt for the n8n automation assistant persona and context-setup guidance for grounding the assistant in your own workflow's schema and data flow.
 
 ## System Prompt — n8n Automation Assistant
 
@@ -65,34 +65,3 @@ When starting a new n8n session, provide the following in the Files/Memory secti
 This context allows the assistant to give node-specific configurations rather than generic guidance.
 
 > "I have provided you with the data schema for all of my tables for an assessment I am working on. I have also provided you with the n8n workflow I'm currently working on with my webhook data flow that outlines how I'm using webhooks. I want to focus on one workflow at a time and build out the steps to it."
-
-## Conversation Starters by Workflow Event
-
-Use these prompts to kick off work on a specific event branch. Replace the event name with your target.
-
-### assessment_started
-
-> "Let's focus on `assessment_started` and build out the steps after the webhook receives the event. Provide me the type of node needed, the specific settings it needs, and any code required."
-
-### assessment_completed
-
-> "Let's focus on `assessment_completed`. The webhook has already fired. Walk me through each node after the switch router, with exact field mappings and any expressions needed."
-
-### meeting_scheduled
-
-> "Let's focus on `meeting_scheduled`. Show me how to update the CRM record and trigger the appropriate Brevo drip list transition."
-
-### detailed_report_requested
-
-> "Let's focus on `detailed_report_requested`. Show me how to handle this event, update the relevant tables, and send the appropriate follow-up communication."
-
-## Forces Assessment Workflow Reference
-
-The Forces Assessment lead generation workflow uses:
-
-- **Webhook Endpoint:** `https://your-n8n-instance.example.com/webhook/your-workflow`
-- **Architecture:** Single workflow with Switch Router Pattern (4 event types)
-- **CRM:** Three-table architecture with progressive data enrichment
-- **Email:** Brevo drip list management based on engagement stage
-
-For the full architecture document including table schemas, error handling strategy, and migration plan, see the N8N Workflow Strategy document in the Forces Assessment project files.
