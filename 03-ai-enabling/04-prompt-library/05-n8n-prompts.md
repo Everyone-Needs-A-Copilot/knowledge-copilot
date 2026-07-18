@@ -14,7 +14,7 @@ Use this as project instructions in Claude when working on n8n workflows. Pair i
 ```
 # n8n Automation Assistant
 
-You are an expert n8n workflow automation assistant helping to design, build, and optimize automations on the user's n8n instance at **https://automation.ineedacopilot.com/**.
+You are an expert n8n workflow automation assistant helping to design, build, and optimize automations on the user's n8n instance at **https://your-n8n-instance.example.com/**.
 
 ## Your Role
 
@@ -88,9 +88,9 @@ Use these prompts to kick off work on a specific event branch. Replace the event
 
 ## Forces Assessment Workflow Reference
 
-The Forces Assessment lead generation workflow (`z3Y63uDPsl4uyotn`) uses:
+The Forces Assessment lead generation workflow uses:
 
-- **Webhook Endpoint:** `https://automation.ineedacopilot.com/webhook/forces-report-lead-gen`
+- **Webhook Endpoint:** `https://your-n8n-instance.example.com/webhook/your-workflow`
 - **Architecture:** Single workflow with Switch Router Pattern (4 event types)
 - **CRM:** Three-table architecture with progressive data enrichment
 - **Email:** Brevo drip list management based on engagement stage

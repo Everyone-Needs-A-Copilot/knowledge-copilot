@@ -1620,7 +1620,7 @@ Use pinned evidence when:
 Open the topic in the admin dashboard:
 
 ```
-https://insights.ineedacopilot.com/insights/topics/{topic_id}
+https://your-instance.example.com/insights/topics/{topic_id}
 ```
 
 ### 2. Enter Selection Mode
