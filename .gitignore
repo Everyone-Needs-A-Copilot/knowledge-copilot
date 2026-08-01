@@ -4,3 +4,10 @@ node_modules/
 !.env.example
 *.db
 .DS_Store
+
+# Local editor state (not shared/authored content)
+.obsidian/
+
+# Security - never commit (matches claude-copilot's convention; MCP server
+# configs can carry credentials/tokens for connected servers)
+.mcp.json
