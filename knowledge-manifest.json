@@ -1,7 +1,7 @@
 {
   "name": "<your-org-slug>",
   "description": "<one-line description of this knowledge base>",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "framework": "claude-copilot",
   "knowledge_root": ".",
   "extensions": []
