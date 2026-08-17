@@ -33,6 +33,19 @@ All sub-paths below are relative to `$CC_KNOWLEDGE_REPO`.
 | Products & capabilities | `02-products/` | `01-ecosystem/`, `02-foundational/`, `03-work/`, `04-applications/` |
 | AI skills & profiles | `03-ai-enabling/` | `01-skills/`, `02-profiles/` |
 | Shared design system | `04-shared-systems/design-system/` | component library, design tokens |
+| Resolved design tensions (**personal tier only**) | `08-taste/` | `INDEX.md` (generated) |
+
+### `08-taste/` — a path that must stay empty in this repo
+
+`08-taste/INDEX.md` holds one person's resolved design tensions, learned from their own feedback: what was in conflict, which defensible option won, and the reasoning that transfers. The seven agents that walk `$CC_KNOWLEDGE_REPOS` read it from the nearest repo that has one.
+
+**The path is declared here; the content belongs only to the personal tier** (`<product>-copilot-private`, `copilot.layer.yml` role `personal`, rank 10). This foundation repo, and every department (rank 20) and organization (rank 30) repo, must not carry an `08-taste/` directory.
+
+That is not filing preference. Because the ladder resolves nearest-tier-first, a rule placed in an org repo would reach every person who inherits that layer — at which point it is not taste, it is policy, and it is being imposed by whoever happened to write it down. It is the Company Fork anti-pattern with a friendlier name. Taste is deliberately the one thing in this contract that cannot be shared upward.
+
+Deliberately numbered outside the `01-company/` namespace so nothing in the org tier can collide with it, and so nothing here can be mistaken for company knowledge.
+
+Full contract, including the entrenchment safeguards and why the unit is a resolved tension rather than an example: `claude-copilot-private/knowledge/08-taste/README.md`.
 
 ---
 
