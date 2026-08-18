@@ -11,7 +11,7 @@ This document defines the stable canonical sub-paths that other projects and age
 
 ```bash
 eval "$(cc env)"
-# CC_KNOWLEDGE_REPO=/Volumes/Dev/Sites/COPILOT/knowledge-copilot  (local)
+# CC_KNOWLEDGE_REPO=/Volumes/Dev/Sites/CSE/knowledge-copilot  (local)
 # or the team-configured equivalent on other machines
 ```
 
