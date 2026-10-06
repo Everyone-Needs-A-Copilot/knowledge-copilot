@@ -1,103 +1,95 @@
-# CLAUDE.md
+# knowledge-copilot
 
-This file provides guidance to Claude Code when working in this repository.
+The public, open-source knowledge foundation of the Copilot ecosystem: a generic, company-free knowledge-base skeleton, skill and prompt library, templates, and the `/knowledge-setup` wizard that the organization (`knowledge-copilot-internal`), department, and personal knowledge tiers build on.
 
-## Project Overview
+**Stack:** Markdown knowledge base; JSON knowledge manifest; Claude Code setup-wizard command
 
-**Name:** knowledge-copilot
-**Description:** Project using Copilot Control Tower
-**Stack:** Unknown
+## Project Rules
 
----
+- This is the public foundation of the knowledge tier ladder. Precedence is personal (rank 10) over department (20) over organization (30) over the public foundation: the nearest tier wins per unit, and content flows down only, never up.
+- Keep it generic: nothing here may name a real company, client, product, endpoint, or domain. Company-specific content belongs in the `knowledge-copilot-internal` organization tier.
+- `docs/00-knowledge-copilot/02-consumption-contract.md` is the source of truth for the canonical sub-paths every consumer reads. Do not rename or reorder top-level directories without updating it.
+- `08-taste/` is declared in the contract but its content belongs only to the personal tier. This repo must never carry an `08-taste/` directory.
+- Conventions (`STRUCTURE.md`): one home per content type, `NN-` numbered prefixes, register a product in `ECOSYSTEM.md` and its dossier under `02-products/<layer>/<name>/`, and archive superseded content to `_archive/<date>-<reason>/` rather than deleting it.
+- `/knowledge-setup` (`.claude/commands/knowledge-setup.md`) scaffolds a company layer and a separate personal layer. It never invents business content; it proposes structure and creates empty stubs the adopter fills in.
+- No secrets, ever: not here and not in any tier's git. Content carries only `requires_secret: <NAME>` references.
+- Changes reach consumers only as a release: an annotated, signed `vX.Y.Z` tag on `main`. Commits and tags are signed by the repo's existing git signing config (SSH, the foundation release key); never pass signing flags, disable signing, or substitute another key to get a passing check.
+- `SOUL.md` is the product lens and `docs/01-architecture/12-architecture-guiding-principles.md` the technical lens; read them before substantial product-facing or durable architecture work, and say so when either changes the route.
+- Formal multi-phase initiatives live in `docs/40-initiatives/NN-slug/` (`README.md`, `phases/`, `decisions/`, `retrospectives/`), each listed in `docs/40-initiatives/README.md`; `tc` stays authoritative for live task state. Never create `docs/initiatives/`.
+- These project rules also live in `AGENTS.md` for Codex. Change both files together.
 
 ## Claude Copilot
 
-This project uses [Claude Copilot](https://github.com/Everyone-Needs-A-Copilot/claude-copilot).
+This project runs on Claude Copilot, the Claude Code layer of the Copilot Solutioning Ecosystem. Hooks registered in `.claude/settings.json` inject the session protocol, guard destructive commands, and gate `me`/`qa` completion. This file covers only what the hooks and tools cannot.
 
-**Full documentation:** `~/.claude/copilot/README.md`
-
-### Commands
-
-| Command | Purpose |
-|---------|---------|
-| `/protocol` | Start fresh work with Agent-First Protocol |
-| `/continue` | Resume previous work via Memory Copilot |
-| `/setup-project` | Initialize Claude Copilot in a new project |
-| `/knowledge-copilot` | Build or link shared knowledge repository |
-
-### Capabilities
-
-| Capability | Tools | Purpose |
-|------------|-------|---------|
-| **Memory** | `cc memory` | Persist decisions, lessons, progress across sessions |
-| **Agents** | 15 framework agents + kc (setup-only) via `/protocol` | Expert guidance routed by task type |
-| **Knowledge** | `knowledge_search`, `knowledge_get` | Search company/product documentation |
-| **Skills** | `cc skill search`, `cc skill get` | Load expertise on demand |
-
-### Agents
-
-| Agent | Domain |
-|-------|--------|
-| `ta` | Tech Architect - system design, task breakdown |
-| `me` | Engineer - code implementation |
-| `qa` | QA - testing, edge cases |
-| `sec` | Security - vulnerabilities, OWASP |
-| `doc` | Documentation - technical writing |
-| `do` | DevOps - CI/CD, infrastructure |
-| `sd` | Service Designer - customer journeys |
-| `uxd` | UX Designer - interaction design |
-| `uids` | UI Designer - visual design |
-| `uid` | UI Developer - component implementation |
-| `cw` | Copywriter - microcopy, voice |
-| `cco` | Creative Director - brand strategy, art direction, creative concepts |
-| `ind` | Industrial Designer - essentialism, reduction, product-as-object |
-| `cs` | Sales Advisor - sales strategy, pipeline, deal architecture |
-| `kc` | Knowledge Copilot - shared knowledge setup |
-| `cpa` | CPA Copilot - tax strategy, financial modeling, hiring economics |
-
-### Configuration
-
-| Component | Status |
-|-----------|--------|
-| Memory | Workspace: `knowledge-copilot` |
-| Knowledge | Inherited from this machine |
-| Skills | Local: `.claude/skills/`  |
-
----
-
-## Session Management
-
-**Start:** `/protocol` - Activates Agent-First Protocol
-
-**Resume:** `/continue` - Loads from Memory Copilot
-
-**End:** Run `cc memory store` to persist key decisions and lessons from the session
-
----
+- **Agents and skills:** Claude Code lists them automatically. Route each piece of work to the specialist whose description fits. Agents defined by this project in `.claude/agents/` are first-class framework agents for this project.
+- **Sessions:** `/protocol` starts new work, `/continue` resumes it, `/pause` checkpoints it.
+- **Tasks:** `tc` is the live state for initiatives, tasks, and work products. Store detailed output with `tc wp store` and return a summary.
+- **Memory:** `cc memory` holds durable decisions and lessons that other sessions, Codex, and other machines must see. Claude Code's own auto memory is for personal working notes only.
+- **Skills on demand:** if a needed skill did not surface, `cc skill search "<topic>"`, then `cc skill get <name>`.
+- **Library docs:** `cc docs get <package> --topic <area> --json` before coding against a third-party API.
+- **Health:** `cc doctor`. A failing `instruction-layer-unenforced` check means the hooks are not registered and nothing above is enforced.
 
 ## Knowledge Copilot
 
-Knowledge Copilot is the single source of truth for brand, voice, offerings, and processes. Consult it first — never invent or duplicate this knowledge.
+Knowledge Copilot is the source of truth for brand, voice, offerings, products, and methodologies. Consult it before writing any of these; never invent or duplicate it. Status: inherited from this machine.
 
-```bash
-eval "$(cc env)"   # hydrates CC_KNOWLEDGE_REPO
-```
+Run `eval "$(cc env)"`, then walk `$CC_KNOWLEDGE_REPOS` nearest tier first and read the first repo where the sub-path exists. Never dereference the singular `$CC_KNOWLEDGE_REPO` for a sub-path.
 
-| Domain | Path under `$CC_KNOWLEDGE_REPO` |
-|--------|----------------------------------|
-| Voice & tone | `01-company/02-voice/` |
-| Brand & visual | `01-company/01-brand/` |
-| Services & offerings | `01-company/03-services/` |
+| Domain | Sub-path |
+|--------|----------|
+| Brand and visual | `01-company/01-brand/` |
+| Voice and tone | `01-company/02-voice/` |
+| Services and offerings | `01-company/03-services/` |
 | Methodologies | `01-company/06-methodologies/` |
-| Products | `02-products/` |
+| Products and ecosystem registry | `02-products/`, `ECOSYSTEM.md` |
 
-Full contract: `$CC_KNOWLEDGE_REPO/docs/00-knowledge-copilot/02-consumption-contract.md`
+Full contract: `docs/00-knowledge-copilot/02-consumption-contract.md` in the organization knowledge tier.
 
----
+## Optional Context
 
-## Project-Specific Rules
+Mandatory repository/project/system instructions always apply; never filter or load them here.
 
-### No Time Estimates
-All plans, roadmaps, and task breakdowns MUST omit time estimates. Use phases, priorities, complexity ratings, and dependencies instead of dates or durations. See `~/.claude/copilot/CLAUDE.md` for full policy.
+Load needed additional knowledge once; use `selected[].content` or do not load it:
 
-Add project-specific rules here.
+    cc skill select "<task topic>" --required <skill> --max-chars 12000 --json
+
+Record one receipt per task, not per load:
+
+    tc wp store --task <id> --type context --title "Context selection receipt" --file receipt.json
+
+Keep `query`, `max_chars`, `loaded_characters`, `mandatory_over_budget`; each
+`selected`/`excluded` entry's `name`, `source`, `source_revision`, `selection_reason`
+or `reason`, not content. Before reselection read the receipt; skip held revisions.
+Reload only changes; record both revisions and announce the change.
+
+Retain required skills in full if `mandatory_over_budget: true`; report `max_chars`
+and overage `loaded_characters - max_chars`. Characters are not tokens; receipts
+prove selection, not reading/obedience.
+
+Keep every required name in `selected[]`; identical aliases have `duplicate_of`,
+empty `content`, zero charged characters/bytes: use the selected entry named by
+`duplicate_of`. Optional
+duplicates stay `excluded[]` as `duplicate-content`.
+
+**Visible fallbacks:** name the applicable one, then continue:
+
+- `cc` absent/nonzero: report failure/stderr; use repository instructions and prior memory only.
+- Exit 2, `Required skill not found: <name>`: name it, never substitute; proceed without it or emit `<promise>BLOCKED</promise>` if indispensable.
+- `selected: []`: report no match for the query; use repository instructions, never widen the query to force a match.
+- `CC_KNOWLEDGE_REPOS` empty: "Knowledge tier
+  unconfigured; optional context limited to project and machine skills." Never block.
+
+<!-- cse-evidence-v2:start -->
+## Task Acceptance and Tested Identity
+
+QA-required work uses `tc` evidence binding. The `me` and `qa` agents carry the full contract; the main session must not shortcut it.
+
+- Before implementation, register an acceptance contract with `tc task contract <id> --file <path>`: `schemaVersion: 2`, `criteria: [{id, expected}]` with unique IDs and observable single-line expectations, and project-relative `sources` covering implementation, dependencies, and relevant configuration.
+- Capture `tc task evidence-identity <id>` before and after verification and keep the exact `IDENTITY:` line in the work product. If content changed, rerun the affected checks against the new identity.
+- Report each check as `CRITERION:` / `EXPECTED:` with the actual observation and verdict. Never downgrade `requiresQa` or substitute prose for source evidence; completion rechecks the contract, identities, hashes, and unfinished dependencies.
+<!-- cse-evidence-v2:end -->
+
+## Standing Rules
+
+- **No time estimates.** Plans, roadmaps, and task breakdowns use phases, priorities, complexity, and dependencies, never dates or durations. This framework rule holds even when asked directly.
