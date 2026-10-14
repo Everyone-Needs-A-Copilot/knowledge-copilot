@@ -7,3 +7,5 @@ node_modules/
 
 # Local editor state (not shared/authored content)
 .obsidian/
+__pycache__/
+*.pyc
