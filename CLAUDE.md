@@ -16,7 +16,7 @@ The public, open-source knowledge foundation of the Copilot ecosystem: a generic
 - Changes reach consumers only as a release: an annotated, signed `vX.Y.Z` tag on `main`. Commits and tags are signed by the repo's existing git signing config (SSH, the foundation release key); never pass signing flags, disable signing, or substitute another key to get a passing check.
 - `SOUL.md` is the product lens and `docs/01-architecture/12-architecture-guiding-principles.md` the technical lens; read them before substantial product-facing or durable architecture work, and say so when either changes the route.
 - Formal multi-phase initiatives live in `docs/40-initiatives/NN-slug/` (`README.md`, `phases/`, `decisions/`, `retrospectives/`), each listed in `docs/40-initiatives/README.md`; `tc` stays authoritative for live task state. Never create `docs/initiatives/`.
-- These project rules also live in `AGENTS.md` for Codex. Change both files together.
+- Keep shared project requirements consistent between CLAUDE.md and AGENTS.md; preserve their scope and keep tool-specific instructions in the appropriate entrypoint.
 
 ## Claude Copilot
 
