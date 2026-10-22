@@ -1,5 +1,5 @@
 ---
-last_updated: 2026-06-29
+last_updated: 2026-10-22
 status: active
 ---
 
@@ -33,11 +33,13 @@ All sub-paths below are relative to `$CC_KNOWLEDGE_REPO`.
 | Products & capabilities | `02-products/` | `01-ecosystem/`, `02-foundational/`, `03-work/`, `04-applications/` |
 | AI skills & profiles | `03-ai-enabling/` | `01-skills/`, `02-profiles/` |
 | Shared design system | `04-shared-systems/design-system/` | component library, design tokens |
-| Resolved design tensions (**personal tier only**) | `08-taste/` | `INDEX.md` (generated) |
+| Resolved design tensions (**personal tier only**) | `08-taste/` | `TASTE.md` (generated) |
 
 ### `08-taste/` — a path that must stay empty in this repo
 
-`08-taste/INDEX.md` holds one person's resolved design tensions, learned from their own feedback: what was in conflict, which defensible option won, and the reasoning that transfers. The seven agents that walk `$CC_KNOWLEDGE_REPOS` read it from the nearest repo that has one.
+`08-taste/TASTE.md` (generated) holds one person's resolved design tensions, learned from their own feedback: what was in conflict, which defensible option won, and the reasoning that transfers. The agents that walk `$CC_KNOWLEDGE_REPOS` read it from the nearest repo that has one.
+
+Owner reference cards are separate: `cco`, `cw` and `uids` read them only through the personal tier's `scripts/taste ref find ... --for-agent <id>`, located through `$CC_PERSONAL_KNOWLEDGE_REPO`, and no other agent reads them. The corpus floor governs when cards are used, and brand outranks a reference (rule (b)).
 
 **The path is declared here; the content belongs only to the personal tier** (`<product>-copilot-private`, `copilot.layer.yml` role `personal`, rank 10). This foundation repo, and every department (rank 20) and organization (rank 30) repo, must not carry an `08-taste/` directory.
 
