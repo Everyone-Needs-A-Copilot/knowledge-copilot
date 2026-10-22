@@ -45,7 +45,7 @@ That is not filing preference. Because the ladder resolves nearest-tier-first, a
 
 Deliberately numbered outside the `01-company/` namespace so nothing in the org tier can collide with it, and so nothing here can be mistaken for company knowledge.
 
-Full contract, including the entrenchment safeguards and why the unit is a resolved tension rather than an example: `claude-copilot-private/knowledge/08-taste/README.md`.
+Full contract, including the entrenchment safeguards and why the unit is a resolved tension rather than an example: `08-taste/README.md` in the personal-tier knowledge repo (the `<product>-copilot-private` repo that holds the corpus).
 
 ---
 
