@@ -1,9 +1,13 @@
 ---
-last_updated: 2026-10-21
+last_updated: 2026-11-07
 status: active
 ---
 
 # Changelog
+
+## [0.1.9] - 2026-11-07
+
+- Migrate this source repository to central Claude and Codex resolution through `copilot.project.json`; preserve tier-owned capabilities and remove managed framework copies and checksum locks.
 
 ## [0.1.8] - 2026-11-05
 
